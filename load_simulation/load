@@ -1,0 +1,110 @@
+#!/bin/bash
+# set -vx 
+
+clear
+ 
+echo "------------------------------------------------------------------------"
+echo "               Test Plate-forme Web"
+echo "               Passerelle Web"
+echo ""
+echo ""
+echo ""
+echo ""
+echo "Taper une option du menu 1, 2 ,3 ou 4, <q> pour quitter"
+echo ""
+echo ""
+echo ""
+echo "			1) Option sans proxy"
+echo "			2) Avec proxy sans compte"
+echo "			3) Avec Proxy et login/passe"
+echo "			4) Tuer processus en cours"
+echo ""
+echo ""
+echo ""
+read saisie
+a=0 
+case $saisie
+        in
+         1)
+                echo "			Vous avez choisi l'option sans proxy" 
+    		echo "			votre liste d'url ?"
+		read list
+		echo "			Votre nombre de processus (X urls)"
+		read proc 
+                while [ "$a" != "$proc" ]; do
+                       i=1
+                       		while read url
+                                do
+                                wget -b -x -r http://$url
+                                i=`expr $i + 1`
+                                done < $list
+                                a=`expr $a + 1`
+                done	
+		echo "			nombre de processus wget"
+        	ps -A | grep wget | wc -l;;
+	 
+	2)
+                echo "			Vous avez choisi l'option avec proxy sans compte" 
+	        echo "			votre liste d'url ?"
+               	read list
+		echo "			entrez votre proxy syntax x.x.x.x:port ?"
+		read proxysyntax
+ 	        echo "			Votre nombre de processus (X urls)"
+                read proc 	
+		export http_proxy=$proxysyntax	
+	        while [ "$a" != "$proc" ]; do 
+			i=1
+       	 			while read url
+       				do
+       				wget -b -x -r --proxy=on http://$url
+       				i=`expr $i + 1`
+       				done < $list
+				a=`expr $a + 1`
+                done
+       		echo "			nombre de processus wget"
+       		ps -A | grep wget | wc -l;;
+ 
+
+        3)
+                echo "			Vous avez choisi l'option avec Proxy et login/passe" 
+                echo "			votre liste d'url ?"
+                read list
+		echo "			entrez votre compte ?"
+		read proxyuser
+		echo "			entrez votre password ?"
+		read proxypasswd
+		echo "			entrez votre proxy syntax x.x.x.x:port ?"
+		read proxysyntax
+		echo "			Votre nombre de processus (X urls)"
+                read proc
+		export http_proxy=http://$proxyuser:$proxypasswd@$proxysyntax
+		grep '\(uid=\|ORION\)' slapcat > /tmp/id
+
+		cp url /tmp
+		cd /tmp				
+		while [ "$a" != "$proc" ]; do
+		  	 i=1	
+				while read url
+				do
+			# auth Digest mais plus lent
+			#		curl -l1 --proxy $proxysyntax --proxy-digest --proxy-user $proxyuser:$proxypasswd -s $url > /dev/null &
+			# auth Basic mais bourrin
+					wget -b -x -r $url > /dev/null &
+					echo $url
+ 					i=`expr $i + 1`
+					done < $list
+					a=`expr $a + 1`
+               			 done
+		echo "			nombre de processus wget"
+      		ps -A | grep wget | wc -l;;
+
+	4)      
+		echo "			Vous avez choisi l'option suppression des processus"
+		killall wget;; 		
+        q|Q)
+                echo "			Vous avez choisi de quitter l'application";; 
+ 
+        *)      # Tous les autres cas
+                echo "			Erreur de saisi";; 
+esac
+
