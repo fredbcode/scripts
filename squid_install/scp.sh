@@ -1,6 +1,9 @@
+#!/bin/bash
+
 IP=$1
 set -vx
 
+# A commenter si 1 er install
 rm errors/fr/ERR_ACCESS_DENIED
 rm errors/fr/ERR_CACHE_ACCESS_DENIED
 
