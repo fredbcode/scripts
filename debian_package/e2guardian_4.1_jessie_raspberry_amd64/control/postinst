@@ -1,0 +1,50 @@
+#! /bin/sh -e
+if ! id -u e2guardian > /dev/null 2>&1 ; then
+    adduser --system --group \
+	--disabled-login \
+	--gecos "e2guardian User" \
+	--home /var/log/e2guardian \
+	--shell /bin/sh \
+	e2guardian
+fi
+
+dguser=`grep daemonuser /etc/e2guardian/e2guardian.conf|grep -v '^\ *#' \
+	|awk -F = '{print $2}'|tr -d \ \'`
+
+dggroup=`grep daemongroup /etc/e2guardian/e2guardian.conf|grep -v '^\ *#' \
+	|awk -F = '{print $2}'|tr -d \ \'`
+
+logdir=`grep loglocation /etc/e2guardian/e2guardian.conf|grep -v '^\ *#' \
+	|awk -F = '{print $2}'|tr -d \ \'|xargs -r dirname 2>/dev/null`
+
+echo "$logdir"
+test -z "$dguser" && dguser=e2guardian
+test -z "$dggroup" && dggroup=e2guardian
+test -z "$logdir" && logdir=/var/log/e2guardian
+
+chown -R $dguser:$dggroup $logdir
+chmod -R u+wr $logdir
+chmod u+wrx $logdir
+chown -R $dguser:$dggroup /etc/e2guardian 
+chmod -Rf 750 /etc/e2guardian 
+
+
+init_failed ()
+{
+	echo "WARNING: Starting e2guardian failed. Please check your configuration."
+}
+
+# Automatically added by dh_installinit
+if [ -x "/etc/init.d/e2guardian" ]; then
+	update-rc.d e2guardian defaults >/dev/null
+	invoke-rc.d e2guardian restart || init_failed
+fi
+
+if [ -d /run/systemd/system ] ; then
+           systemctl enable e2guardian >/dev/null
+	   systemctl daemon-reload >/dev/null 
+	   systemctl restart e2guardian || init_failed
+fi
+
+# End automatically added section
+

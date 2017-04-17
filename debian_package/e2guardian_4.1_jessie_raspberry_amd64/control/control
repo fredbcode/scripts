@@ -1,0 +1,24 @@
+Package: e2guardian 
+Version: 4.1.0
+Architecture: armhf 
+Maintainer: frederic Bourgeois <numsys@free.fr>
+Installed-Size: 1721
+Depends: adduser, libevent-pthreads-2.0-5, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libpcre3 (>= 8.10), libstdc++6 (>= 4.6), libtommath0, zlib1g (>= 1:1.1.4), libssl1.0.0 (>= 1.0.0)
+Suggests: squid, clamav (>= 0.80), clamav-freshclam
+Section: web
+Priority: optional
+Description: Web content filtering
+ e2guardian filters the content of pages based on many methods
+ including phrase matching, PICS filtering and URL filtering. It does
+ not purely filter based on a banned list of sites.
+ .
+ It provides real-time virus scanning capabilities for content access.
+ .
+ e2guardian is designed to be completely flexible and allows you to tailor
+ the filtering to your exact needs. It can be as draconian or as
+ unobstructive as you want. The default settings are geared towards what a
+ primary school might want but e2guardian puts you in control of what you
+ want to block.
+ .
+ e2guardian requires squid or another similar caching proxy server
+ on your local network.
