@@ -1,5 +1,5 @@
 #!/bin/bash
-# set -vx 
+set -vx 
 
 clear
  
@@ -52,11 +52,12 @@ case $saisie
  	        echo "			Votre nombre de processus (X urls)"
                 read proc 	
 		export http_proxy=$proxysyntax	
+		export https_proxy=$proxysyntax	
 	        while [ "$a" != "$proc" ]; do 
 			i=1
        	 			while read url
        				do
-       				wget -b -x -r --proxy=on http://$url
+       				wget --no-check-certificate -b -x -r --proxy=on -q -o /dev/null $url
        				i=`expr $i + 1`
        				done < $list
 				a=`expr $a + 1`
@@ -78,6 +79,7 @@ case $saisie
 		echo "			Votre nombre de processus (X urls)"
                 read proc
 		export http_proxy=http://$proxyuser:$proxypasswd@$proxysyntax
+		export https_proxy=http://$proxyuser:$proxypasswd@$proxysyntax
 		grep '\(uid=\|ORION\)' slapcat > /tmp/id
 
 		cp url /tmp
@@ -89,7 +91,7 @@ case $saisie
 			# auth Digest mais plus lent
 			#		curl -l1 --proxy $proxysyntax --proxy-digest --proxy-user $proxyuser:$proxypasswd -s $url > /dev/null &
 			# auth Basic mais bourrin
-					wget -b -x -r $url > /dev/null &
+					wget --no-check-certificate -b -x -r $url -q -o /dev/null $url 
 					echo $url
  					i=`expr $i + 1`
 					done < $list
