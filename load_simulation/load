@@ -1,5 +1,5 @@
 #!/bin/bash
-set -vx 
+#set -vx 
 
 clear
  
@@ -57,8 +57,9 @@ case $saisie
 			i=1
        	 			while read url
        				do
-       				wget --no-check-certificate -b -x -r --proxy=on -q -o /dev/null $url
-       				i=`expr $i + 1`
+       				wget --no-check-certificate -b -x -r --proxy=on -o /dev/null $url &> /dev/null 
+				sleep 0.1
+				i=`expr $i + 1`
        				done < $list
 				a=`expr $a + 1`
                 done
@@ -91,7 +92,8 @@ case $saisie
 			# auth Digest mais plus lent
 			#		curl -l1 --proxy $proxysyntax --proxy-digest --proxy-user $proxyuser:$proxypasswd -s $url > /dev/null &
 			# auth Basic mais bourrin
-					wget --no-check-certificate -b -x -r $url -q -o /dev/null $url 
+					wget --no-check-certificate -b -x -r -o /dev/null $url &> /dev/null  
+					sleep 0.1
 					echo $url
  					i=`expr $i + 1`
 					done < $list
