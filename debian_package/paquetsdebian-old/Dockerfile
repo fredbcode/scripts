@@ -5,7 +5,7 @@ WORKDIR /home/compile
 ARG COMMIT
 ARG BUILD_DATE
 ENV VERSION 5.1
-ENV OS debian
+ENV OS debianold
 
 LABEL commit.e2guardian=$COMMIT build_date.e2guardian=$BUILD_DATE
 # COMPIL
