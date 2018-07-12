@@ -1,3 +1,0 @@
-OSFULL=`lsb_release -ds` 
-OSFULL="${OSFULL// }"
-echo $OSFULL
