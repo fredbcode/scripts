@@ -36,7 +36,7 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts \
 && cd scripts/debian_package \
 && cp /usr/sbin/e2guardian e2"$OS"_package/data/usr/sbin \
-&& cp -Rf /etc/e2guardian/* e2"$OS"_package/data/etc/ \
+&& cp -Rf /etc/e2guardian e2"$OS"_package/data/etc/ \
 && cp /home/compile/e2guardian-$VERSION/data/scripts/e2guardian.service e2"$OS"_package/data/lib/systemd/system \
 && VFULL=`/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` \
 && sed -i "s/Version:.*$/Version: "$VFULL"/g" e2"$OS"_package/control/control \
