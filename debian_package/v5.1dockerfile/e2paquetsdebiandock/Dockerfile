@@ -45,7 +45,7 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && ./rebuild.sh e2"$OS"_package \
 && OSFULL=`lsb_release -cs` \ 
 && cp e2"$OS"_package.deb e2guardian_"$OS"_"$OSFULL"_package.deb \
-&& cp e2"$OS"_package.deb /tmp/e2guardian_"$OS"_"$OSFULL"_package.deb 
+&& cp e2"$OS"_package.deb /home/compile/e2guardian_"$OS"_"$OSFULL"_package.deb 
 
 EXPOSE 8080
-CMD /usr/sbin/e2guardian -N
+CMD cp /home/compile/*.deb /tmp && /usr/sbin/e2guardian -N
