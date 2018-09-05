@@ -26,8 +26,6 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && adduser --no-create-home --system e2guardian \
 && addgroup --system e2guardian \
 && chmod 750 -Rf /etc/e2guardian && chmod 750 -Rf /usr/share/e2guardian && chown -Rf e2guardian /etc/e2guardian /usr/share/e2guardian /var/log/e2guardian \
-&& find /etc/e2guardian -type f -name .in -delete \
-&& find /usr/share/e2guardian -type f -name .in -delete \
 # ROOT mode if needed ...
 #&& sed -i "s/#daemonuser = 'e2guardian'/daemonuser = 'root'/g" /etc/e2guardian/e2guardian.conf \
 #&& sed -i "s/#daemongroup = 'e2guardian'/daemongroup = 'root'/g" /etc/e2guardian/e2guardian.conf \
@@ -39,6 +37,7 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && cp /usr/share/e2guardian e2"$OS"_package/data/usr/share \
 && cp -Rf /etc/e2guardian e2"$OS"_package/data/etc/ \
 && find e2"$OS"_package/data/etc/ -type f -name Makefil* -delete \
+&& find e2"$OS"_package/data/etc/ -type f -name *.in -delete \
 && cp /home/compile/e2guardian-$VERSION/data/scripts/e2guardian.service e2"$OS"_package/data/lib/systemd/system \
 && VFULL=`/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` \
 && sed -i "s/Version:.*$/Version: "$VFULL"/g" e2"$OS"_package/control/control \
