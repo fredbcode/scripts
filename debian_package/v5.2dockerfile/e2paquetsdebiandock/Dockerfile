@@ -1,10 +1,10 @@
-FROM ubuntu:18.04
+FROM debian:9
 MAINTAINER "numsys - @ - free.fr"
 WORKDIR /home/compile
 ARG COMMIT
 ARG BUILD_DATE
-ENV VERSION 5.1
-ENV OS ubuntu 
+ENV VERSION 5.2.0
+ENV OS debian
 
 LABEL commit.e2guardian=$COMMIT build_date.e2guardian=$BUILD_DATE
 # COMPIL
@@ -37,6 +37,9 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && cd scripts/debian_package \
 && cp /usr/sbin/e2guardian e2"$OS"_package/data/usr/sbin \
 && cp -Rf /etc/e2guardian e2"$OS"_package/data/etc/ \
+&& cp /usr/share/e2guardian e2"$OS"_package/data/usr/share \
+&& cp -Rf /etc/e2guardian e2"$OS"_package/data/etc/ \
+&& find e2"$OS"_package/data/etc/ -type f -name Makefil* -delete \
 && cp /home/compile/e2guardian-$VERSION/data/scripts/e2guardian.service e2"$OS"_package/data/lib/systemd/system \
 && VFULL=`/usr/sbin/e2guardian -v | sed -n 1p | cut -d " " -f 2` \
 && sed -i "s/Version:.*$/Version: "$VFULL"/g" e2"$OS"_package/control/control \
@@ -44,8 +47,8 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && sed -i "s/Installed-Size:.*$/Installed-Size: "$SIZE"/g" e2"$OS"_package/control/control && cat e2"$OS"_package/control/control \  
 && ./rebuild.sh e2"$OS"_package \
 && OSFULL=`lsb_release -cs` \ 
-&& cp e2"$OS"_package.deb e2guardian_"$OS"_"$OSFULL"_package.deb \
-&& cp e2"$OS"_package.deb /home/compile/e2guardian_"$OS"_"$OSFULL"_package.deb
+&& cp e2"$OS"_package.deb e2guardian_"$VERSION"_"$OS"_"$OSFULL"_package.deb \
+&& cp e2"$OS"_package.deb /home/compile/e2guardian_"$VERSION"_"$OS"_"$OSFULL"_package.deb 
 
 EXPOSE 8080
-CMD cp /home/compile/*.deb /tmp && /usr/sbin/e2guardian -N 
+CMD cp /home/compile/*.deb /tmp && /usr/sbin/e2guardian -N
