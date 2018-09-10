@@ -34,7 +34,7 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && apt-get install -y git binutils && git clone https://github.com/fredbcode/scripts \
 && cd scripts/debian_package \
 && cp /usr/sbin/e2guardian e2"$OS"_package/data/usr/sbin \
-&& cp /usr/share/e2guardian e2"$OS"_package/data/usr/share \
+&& cp -rf /usr/share/e2guardian e2"$OS"_package/data/usr/share \
 && cp -Rf /etc/e2guardian e2"$OS"_package/data/etc/ \
 && find e2"$OS"_package/data/etc/ -type f -name Makefil* -delete \
 && find e2"$OS"_package/data/etc/ -type f -name *.in -delete \
