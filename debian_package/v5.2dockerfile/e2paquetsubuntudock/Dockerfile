@@ -3,7 +3,7 @@ MAINTAINER "numsys - @ - free.fr"
 WORKDIR /home/compile
 ARG COMMIT
 ARG BUILD_DATE
-ENV VERSION 5.2.0
+ENV VERSION 5.2.2
 ENV OS ubuntu 
 
 LABEL commit.e2guardian=$COMMIT build_date.e2guardian=$BUILD_DATE

@@ -3,7 +3,7 @@ MAINTAINER "numsys - @ - free.fr"
 WORKDIR /home/compile
 ARG COMMIT
 ARG BUILD_DATE
-ENV VERSION 5.2.0
+ENV VERSION 5.2.2
 ENV OS debian
 
 LABEL commit.e2guardian=$COMMIT build_date.e2guardian=$BUILD_DATE
@@ -25,7 +25,7 @@ libclamav-dev libpcre3-dev zlib1g-dev pkg-config libssl-dev libssl1.1 git ca-cer
 && cp -Rf configs/* /etc/e2guardian/ \
 && adduser --no-create-home --system e2guardian \
 && addgroup --system e2guardian \
-&& chmod 750 -Rf /etc/e2guardian && chmod 750 -Rf /usr/share/e2guardian && chown -Rf e2guardian /etc/e2guardian /usr/share/e2guardian /var/log/e2guardian 
+&& chmod 750 -Rf /etc/e2guardian && chmod 750 -Rf /usr/share/e2guardian && chown -Rf e2guardian /etc/e2guardian /usr/share/e2guardian /var/log/e2guardian \ 
 # ROOT mode if needed ...
 #&& sed -i "s/#daemonuser = 'e2guardian'/daemonuser = 'root'/g" /etc/e2guardian/e2guardian.conf \
 #&& sed -i "s/#daemongroup = 'e2guardian'/daemongroup = 'root'/g" /etc/e2guardian/e2guardian.conf \
