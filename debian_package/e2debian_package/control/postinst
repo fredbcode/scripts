@@ -27,8 +27,8 @@ chmod -R u+wr $logdir
 chmod u+wrx $logdir
 chown -R $dguser:$dggroup /etc/e2guardian 
 
-find /etc/e2guardian -type d exec chmod 750 {} \+
-find /etc/e2guardian -type f exec chmod 640 {} \+
+find /etc/e2guardian -type d -exec chmod 750 {} \+
+find /etc/e2guardian -type f -exec chmod 640 {} \+
 
 init_failed ()
 {
