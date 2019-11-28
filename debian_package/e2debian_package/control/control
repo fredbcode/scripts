@@ -3,7 +3,7 @@ Version: 4.1.4
 Architecture: amd64
 Maintainer: frederic Bourgeois <numsys@free.fr>
 Installed-Size: 13900
-Depends: adduser, libevent-pthreads-2.0-5, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libpcre3 (>= 8.10), libstdc++6 (>= 4.6), libtommath1, zlib1g (>= 1:1.1.4), libssl1.1
+Depends: adduser, libevent-pthreads-2.1-6, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libpcre3 (>= 8.10), libstdc++6 (>= 4.6), libtommath1, zlib1g (>= 1:1.1.4), libssl1.1
 Suggests: squid, clamav (>= 0.80), clamav-freshclam
 Section: web
 Priority: optional
