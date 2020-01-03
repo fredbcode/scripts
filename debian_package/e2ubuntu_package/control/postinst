@@ -1,4 +1,4 @@
-#! /bin/sh -vx
+#! /bin/sh 
 if ! id -u e2guardian > /dev/null 2>&1 ; then
     adduser --system --group \
 	--disabled-login \
