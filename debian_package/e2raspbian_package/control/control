@@ -1,6 +1,6 @@
 Package: e2guardian 
 Version: 5.3.3
-Architecture: armhf 
+Architecture: arm64
 Maintainer: frederic Bourgeois <numsys@free.fr>
 Installed-Size: 4096
 Depends: adduser, libevent-pthreads-2.1-6, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libpcre3 (>= 8.10), libstdc++6 (>= 4.6), libtommath1, zlib1g (>= 1:1.1.4), libssl1.1
