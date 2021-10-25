@@ -1,2 +1,0 @@
-e2guardian: non-standard-executable-perm usr/lib/cgi-bin/e2guardian.pl 0655 != 0755
-e2guardian: dir-or-file-in-var-lock var/lock/subsys/
