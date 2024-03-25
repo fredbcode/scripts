@@ -3,7 +3,7 @@ Version: 5.3.3
 Architecture: arm64
 Maintainer: frederic Bourgeois <numsys@free.fr>
 Installed-Size: 4096
-Depends: adduser, libevent-pthreads-2.1-7, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libbpcre2-posix3, libstdc++6 (>= 4.6), libtommath1, zlib1g (>= 1:1.1.4), libssl3
+Depends: adduser, libevent-pthreads-2.1-7, perl, libbz2-1.0, libc6 (>= 2.4), libgcc1 (>= 1:4.1.1), libpcre2-posix3, libstdc++6 (>= 4.6), libtommath1, zlib1g (>= 1:1.1.4), libssl3
 Suggests: squid, clamav (>= 0.80), clamav-freshclam
 Section: web
 Priority: optional
