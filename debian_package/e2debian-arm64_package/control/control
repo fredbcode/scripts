@@ -20,6 +20,4 @@ Description: Web content filtering
  primary school might want but e2guardian puts you in control of what you
  want to block.
  .
- e2guardian requires squid or another similar caching proxy server
- on your local network.
-3
+ e2guardian requires squid or another similar caching proxy server on your local network
